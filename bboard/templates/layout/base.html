@@ -1,0 +1,59 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+	<title>{% block title %}Главная{% endblock %} - Статьи</title>
+	<link rel="stylesheet" href="{% static 'bboard/style.css' %}">
+	<link href="https://fonts.googleapis.com/css?family=Oswald&display=swap" rel="stylesheet">
+</head>
+<body>
+	
+	<header>
+		<nav id="main_nav">
+			<a href="{% url 'index' %}"><button>Home</button></a>
+			<a href="{% url 'index' %}"><button>Anoter page</button></a>
+			<a href="#contakt"><button>Contact</button></a>
+			<a href="#contakt"><button>Linsence</button></a>
+			<a href="{% url 'index' %}"><button>Shop</button></a>
+		</nav>
+		<div id="hat">
+			<h2>Home</h2>
+			<p>Just now you at main page</p>
+		</div>
+		
+		<nav>
+			<div class="dropdown">
+				<a href="#"><button class="dropbtn">Свежее</button></a>
+				<div class="dropdown-content">
+					<a href="#">Растения</a>
+					<a href="#">Лучшая RPG</a>
+					<a href="#">Что-то еще!</a>
+				</div>
+				</div>
+			</div>
+			<div class="dropdown">
+				<a href="#"><button class="dropbtn">Архивы</button></a>
+				<div class="dropdown-content">
+					<a href="#">Растения</a>
+					<a href="#">Лучшая RPG</a>
+					<a href="#">Что-то еще!</a>
+				</div>
+				</div>
+			</div>
+		</nav>
+	</header>
+	<nav>
+		<a href="{% url 'index' %}">Главная</a>
+		<a href="{% url 'add' %}">Добавить</a>
+		{% for rubric in rubrics %}
+		<a href="{% url 'by_rubric' rubric.pk %}">{{ rubric.name }}</a>
+		{% endfor %}
+	</nav>
+	<section>
+		{% block content %}
+		{% endblock %}
+	</section>
+
+</body>
+</html>
